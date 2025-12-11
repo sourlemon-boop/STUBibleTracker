@@ -1,0 +1,250 @@
+/* 기본 스타일 */
+body {
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* ----------------------------------------------------- */
+/* 💡 로그인/로그아웃 패널 스타일 (왼쪽 고정, 둥근 모서리) */
+/* ----------------------------------------------------- */
+#login-panel {
+    position: fixed; /* 화면에 고정 */
+    top: 20px;
+    left: 20px;
+    width: 260px; /* 로그인 창 너비 */
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 15px; /* 💡 둥근 모서리 */
+}
+
+#login-box h1 {
+    font-size: 1.1em;
+    color: #4CAF50;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/* 입력 필드와 버튼 스타일 */
+#username {
+    width: 95%; 
+    padding: 8px;
+    margin: 5px 0 10px;
+    box-sizing: border-box; 
+    border: 1px solid #ccc;
+    border-radius: 4px; /* 살짝 둥근 모서리 */
+    font-size: 0.9em;
+}
+
+#login-button, #logout-button {
+    width: 95%;
+    padding: 10px;
+    background-color: #2196F3; /* 파란색 */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+#login-button:hover, #logout-button:hover {
+    background-color: #1e88e5;
+}
+
+/* 로그아웃 버튼 색상 다르게 */
+#logout-button {
+    background-color: #f44336; /* 빨간색 */
+    margin-top: 10px;
+}
+#logout-button:hover {
+    background-color: #d32f2f;
+}
+
+/* ----------------------------------------------------- */
+/* 메인 앱 콘텐츠 스타일 */
+/* ----------------------------------------------------- */
+#app-content {
+    margin-left: 300px; /* 💡 로그인 창 너비보다 조금 더 여백을 줘서 겹치지 않게 함 */
+    padding: 20px;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+main {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* --- 통독률 바 디자인 --- (이전과 동일) */
+.progress-container {
+    background-color: #eee;
+    border-radius: 8px;
+    margin: 15px 0;
+    height: 30px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    background-color: #2196F3;
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.5s ease;
+    text-align: center;
+    color: white;
+    line-height: 30px;
+}
+
+
+/* --- 체크리스트 스타일 --- (이전과 동일) */
+.book-container {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.book-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #4CAF50;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 5px;
+}
+
+.chapter-checkbox-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chapter-checkbox-list input[type="checkbox"] {
+    display: none; 
+}
+
+.chapter-checkbox-list input[type="checkbox"]:checked + label {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #388e3c;
+}
+.chapter-checkbox-list label {
+    background-color: #f9f9f9;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #777;
+    font-size: 0.8em;
+} 
+
+/* style.css 파일에 추가 */
+
+.select-all-btn {
+    background-color: #5cb85c; /* 연한 녹색 */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.3s;
+}
+
+.select-all-btn:hover {
+    background-color: #4cae4c;
+}
+
+/* style.css 파일: 맨 아래에 추가 */
+
+/* --- 100% 달성 축하 메시지 스타일 --- */
+#congratulations-area {
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 30px;
+    background: #f7fff7; /* 밝은 배경 */
+    border: 3px solid #ffd700; /* 금색 테두리 */
+    border-radius: 15px;
+}
+
+.congrats-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #4CAF50; /* 초록색 */
+    margin-bottom: 5px;
+}
+
+.congrats-message {
+    font-size: 3em;
+    font-weight: 900;
+    color: #FFD700; /* 금색 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    /* 애니메이션: 튀어오르는 효과 */
+    animation: popIn 0.5s ease-out forwards;
+}
+
+.congrats-subtitle {
+    font-size: 1.2em;
+    color: #777;
+    margin-top: 20px;
+}
+
+/* --- 애니메이션 키프레임 --- */
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* --- 간단한 폭죽 효과 (CSS 변수 사용) --- */
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 자바스크립트가 동적으로 생성할 폭죽 조각 스타일 */
+.confetti {
+    position: fixed;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    background-color: #ffd700; /* 기본 색상 */
+    border-radius: 50%;
+    z-index: 9999;
+}

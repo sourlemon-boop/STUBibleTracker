@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성경 통독 트래커</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    
+    <header>
+        <h1 id="app-title">성경 통독 트래커</h1>
+    </header>
+
+    <div id="login-panel">
+        <div id="login-box">
+            <h1 id="panel-title">기록 시작</h1>
+            
+            <div id="login-form-area">
+                <p>이름(ID)을 입력하고 기록을 불러오세요.</p>
+                <input type="text" id="username" placeholder="이름 또는 별명 (ID)">
+                <button id="login-button">기록 불러오기</button>
+                <p id="login-message" style="color: red; margin-top: 10px;"></p>
+            </div>
+
+            <div id="user-info-area" style="display: none;">
+                <p>환영합니다, <strong id="logged-in-user"></strong>님!</p>
+                <button id="logout-button">다른 이름으로 로그인</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="app-content">
+        
+        <main>
+            <section id="progress-area">
+                <h2>나의 진도</h2>
+                <div class="progress-container">
+                    <div id="progress-bar" style="width: 0%;"></div>
+                </div> 
+                <p id="progress-text">현재 **0장 / 1189장** (0%) 통독</p>
+            </section>
+
+            
+            <section id="tracker-area">
+                <h2>통독 체크 리스트</h2>
+                
+                <div id="bible-list">
+                    <p>로그인 후 목록을 불러올 수 있습니다.</p>
+                </div>
+                
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Yebin's Web</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script> 
+
+    <section id="congratulations-area" style="display: none;">
+                <div class="congrats-box">
+                    <p class="congrats-title"> 통독 100% 달성 </p>
+                    <h2 class="congrats-message">GREAT JOB!</h2>
+                    <div id="confetti-effect"></div> <p class="congrats-subtitle">당신의 노력을 축복합니다.</p>
+                </div>
+            </section>
+
+</body>
+</html>
