@@ -1,0 +1,5 @@
+# .gitignore 파일 내용
+# 비밀 키가 담긴 파일은 GitHub에 업로드하지 않습니다.
+.env
+# Node.js가 설치 파일을 저장하는 폴더도 올리지 않습니다.
+node_modules
