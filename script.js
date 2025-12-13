@@ -129,55 +129,52 @@ function setupLoginLogic() {
 // 2. ✨ 핵심 API 기능: 랜덤 성경 구절 가져오기 및 표시 (수정됨)
 // ==========================================================
 
+// script.js - fetchRandomVerse 함수 전체 교체 (Gemini 서버 호출)
 function fetchRandomVerse() {
     const quoteContent = document.getElementById('quote-content');
-    
-    quoteContent.innerHTML = `<p id="quote-text">말씀을 불러오는 중... 🙏</p><p id="quote-reference"></p>`;
-    
-    // 1. 한국어 책 이름 목록에서 랜덤 선택
-    const koreanBookNames = Object.keys(BIBLE_BOOKS);
-    const randomKoreanBook = koreanBookNames[Math.floor(Math.random() * koreanBookNames.length)];
-    const chapterCount = BIBLE_BOOKS[randomKoreanBook];
-    
-    // 2. 해당 책의 장 수를 기준으로 랜덤 장 선택
-    const randomChapter = Math.floor(Math.random() * chapterCount) + 1;
-    
-    // 3. 영문 책 이름으로 변환
-    const englishBookName = KOREAN_TO_ENGLISH[randomKoreanBook];
-    
-    // 4. API 요청을 위한 구절 참조 문자열 생성 (예: John 3:16)
-    // 임의로 1절만 가져오게 설정했어. (1절만 가져오는 게 깔끔하고 빠름)
-    const verseReference = `${englishBookName} ${randomChapter}:1`; 
-    
-    // 5. API 호출 URL 생성
-    const apiUrl = `${BIBLE_API_URL}${encodeURIComponent(verseReference)}?translation=kjv`; // KJV 버전 사용
+    const refreshButton = document.getElementById('refresh-quote-button');
+    const koreanLinkButton = document.getElementById('korean-link-button');
 
-    fetch(apiUrl)
+    // 서버가 돌고 있는 주소로 API 호출 (Node.js 서버의 3000번 포트)
+    const API_ENDPOINT = 'http://localhost:3000/api/random-verse'; 
+
+    // 로딩 메시지
+    if (koreanLinkButton) koreanLinkButton.style.display = 'none';
+    quoteContent.innerHTML = `<p id="quote-text">말씀을 불러오는 중... 🙏</p><p id="quote-reference"></p>`;
+    if (refreshButton) refreshButton.disabled = true;
+
+    fetch(API_ENDPOINT)
         .then(response => {
             if (!response.ok) {
-                 throw new Error("API 호출 실패: 유효하지 않은 구절 참조 또는 네트워크 오류");
+                 throw new Error(`서버 응답 오류: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            // API 응답 데이터 파싱
-            const verseText = data.text.trim();
+            // Gemini 서버가 준 JSON 데이터를 파싱
+            const verseText = data.text_korean;
             const verseRef = data.reference;
-            const translationName = data.translation_name;
 
             // 화면에 업데이트
             document.getElementById('quote-text').textContent = `"${verseText}"`;
-            document.getElementById('quote-reference').textContent = `- ${verseRef} (${translationName})`;
+            document.getElementById('quote-reference').textContent = `- ${verseRef} (개역개정)`;
+            
         })
         .catch(error => {
             console.error('API 호출 중 오류 발생:', error);
-            // 오류 시 기본 구절 표시 (기독교인인 예빈이를 위한 위로의 말씀)
+            // 오류 시 기본 구절 표시
             document.getElementById('quote-text').textContent = 
-                `"The Lord is my shepherd; I shall not want. (여호와는 나의 목자시니 내게 부족함이 없으리로다)"`;
+                `"여호와를 기뻐하라 그가 네 마음의 소원을 네게 이루어 주시리로다."`;
             document.getElementById('quote-reference').textContent = 
-                `- Psalms 23:1 (Error fetching new verse. 😢)`;
+                `- 시편 37편 4절 (서버 연결 오류 😢)`;
+        })
+        .finally(() => {
+            if (refreshButton) refreshButton.disabled = false;
+            // 한글 성경 연결 버튼은 이제 필요 없으므로 숨김 (이미 한글이니까)
+            if (koreanLinkButton) koreanLinkButton.style.display = 'none';
         });
 }
+// ⚠️ 네가 이전에 추가했던 setupKoreanLink 함수는 이제 필요 없으니 삭제해도 돼!
 
 // ==========================================================
 // 3. 기타 핵심 앱 기능
